@@ -1,0 +1,109 @@
+<section #view>
+  <h1 #viewText [style.background-image]="gradient">some text</h1>
+</section>
+
+<section #inputs>
+  <div>
+    <select #font (change)="viewText.style.fontFamily = font.value">
+      <option>monospace</option>
+      <option>sans-serif</option>
+      <option>serif</option>
+    </select>
+    <input
+      #fsize
+      type="number"
+      placeholder="font size (in px)"
+      (keyup)="viewText.style.fontSize = fsize.value + 'px'"
+    />
+    <label>
+      <input
+        #darkbg
+        type="radio"
+        name="bgcolor"
+        value="#3c3c3c"
+        checked="checked"
+        (click)="view.style.backgroundColor = darkbg.value"
+      />dark background</label
+    >
+    <label>
+      <input
+        #brightbg
+        type="radio"
+        name="bgcolor"
+        value="#ffffff"
+        (click)="view.style.backgroundColor = brightbg.value"
+      />bright background</label
+    >
+  </div>
+
+  <div>
+    <textarea
+      #newText
+      placeholder="type here"
+      (keyup)="viewText.innerText = newText.value"
+    ></textarea>
+  </div>
+
+  <div>
+    <input
+      #angle
+      value="0"
+      type="range"
+      min="0"
+      max="360"
+      (change)="
+        angleType.value = angle.value;
+        changeColor(angle.value, color1.value, color2.value)
+      "
+    />
+    <input
+      #angleType
+      placeholder="angle (in deg)"
+      (change)="
+        angle.value = angleType.value;
+        changeColor(angle.value, color1.value, color2.value)
+      "
+      type="number"
+    />
+  </div>
+
+  <div>
+    <input
+      #color1
+      type="color"
+      value="#000000"
+      (change)="changeColor(angle.value, color1.value, color2.value)"
+    />{{ color1.value }}
+    <input
+      #color2
+      type="color"
+      value="#ffffff"
+      (change)="changeColor(angle.value, color1.value, color2.value)"
+    />{{ color2.value }}
+  </div>
+  <div>
+    <button
+      (click)="inputs.style.display = 'none'; code.style.display = 'block'"
+    >
+      get code
+    </button>
+  </div>
+</section>
+
+<section #code>
+  <div>
+    <h4>CSS:</h4>
+    <p>
+      background-image: {{ gradient }};<br />
+      background-clip: text;<br />
+      color: transparent;
+    </p>
+  </div>
+  <div>
+    <button
+      (click)="inputs.style.display = 'block'; code.style.display = 'none'"
+    >
+      thanks!
+    </button>
+  </div>
+</section>
