@@ -103,3 +103,33 @@ button:hover {
   background-color: cyan;
   cursor: pointer;
 }
+
+div#follower{
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 100%;
+  mix-blend-mode: difference;
+
+  transition: all .01s;
+  transition: transform .3s;
+  animation: spinnin infinite linear alternate 5s;
+}
+@keyframes spinnin{
+  0%{
+    background-color: red;
+  }
+  50%{
+    background-color: green;
+  }
+  100%{
+    background-color: blue;
+  }
+}
+section:nth-child(1):hover ~ #follower{
+  transform: scale(3);
+}
