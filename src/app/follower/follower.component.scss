@@ -1,0 +1,28 @@
+div.follower{
+  position: absolute;
+  pointer-events: none;
+  
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 100%;
+  mix-blend-mode: color-dodge;
+  backdrop-filter: saturate(30%);
+
+  animation: colorChange infinite linear 4s;
+}
+
+@keyframes colorChange{
+  0%{
+    background-color: red;
+  }
+  33%{
+    background-color: green;
+  }
+  66%{
+    background-color: blue;
+  }
+  100%{
+    background-color: red;
+  }
+}
