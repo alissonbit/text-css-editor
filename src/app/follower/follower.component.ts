@@ -54,14 +54,16 @@ export class FollowerComponent implements OnInit {
         mouseMoving = false;
       });
 
-      document.addEventListener('mousemove', ()=>{
-        followers.forEach((follower) => {
-          setTimeout(() => {
-            follower.style.left = mousePosition.pageX + 'px';
-            follower.style.top = mousePosition.pageY + 'px';
-          }, multiplier * 1000);
-        });
-      })
+      document.addEventListener('mousemove', () => {
+        if (!mouseMoving) {
+          followers.forEach((follower) => {
+            setTimeout(() => {
+              follower.style.left = mousePosition.pageX + 'px';
+              follower.style.top = mousePosition.pageY + 'px';
+            }, multiplier + 1300);
+          });
+        }
+      });
     });
   }
 }
